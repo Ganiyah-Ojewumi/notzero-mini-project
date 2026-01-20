@@ -4,42 +4,79 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>NotZero Chat</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <header>
-            <h1>Chat Room</h1>
-        </header>
-        <main>
-            <section>
-                <article>
-                    <span><b>John:</b></span> <br />
-                    <span>Hello, how are you?</span> <br />
-                    <small>10:00 AM</small>
+        <div class="parent">
+            <header class="chat-header">
+                <h1>Chat Room</h1>
+            </header>
+            <main class="chat-container">
+                <article class="message sender">
+                    <p class="name">James:</p>
+                    <p>Hello, how are you?</p>
+                    <p class="time">10:00 AM</p>
                 </article>
-                <hr />
-                <article>
-                    <span><b>Doe:</b></span> <br />
-                    <span>I am good and you?</span> <br />
-                    <small>10:00 AM</small>
+
+                <article class="message receiver">
+                    <p class="name">Musa:</p>
+                    <p>I am good and you?</p>
+                    <p class="time">10:00 AM</p>
                 </article>
-                <hr />
-                <article>
-                    <span><b>James:</b></span> <br />
-                    <span>You good?</span> <br />
-                    <small>10:00 AM</small>
+
+                <article class="message sender">
+                    <p class="name">James:</p>
+                    <p>You good?</p>
+                    <p class="time">10:01 AM</p>
                 </article>
-                <hr />
-                <article>
-                    <span><b>Musa:</b></span> <br />
-                    <span>Yeah sure</span> <br />
-                    <small>10:00 AM</small>
+
+                <article class="message receiver">
+                    <p class="name">Musa:</p>
+                    <p>Yeah, I’m good. What’s up?</p>
+                    <p class="time">10:03 AM</p>
                 </article>
-            </section>
-        </main>
-        <br />
-        <footer>
-            <input name="message" placeholder="Start typing..." />
-            <button>Send Message</button>
-        </footer>
+
+                <article class="message sender">
+                    <p class="name">James:</p>
+                    <p>Just checking in. Are we still meeting later?</p>
+                    <p class="time">10:03 AM</p>
+                </article>
+
+                <article class="message receiver">
+                    <p class="name">Musa:</p>
+                    <p>Yes, we’re still on. See you by noon.</p>
+                    <p class="time">10:05 AM</p>
+                </article>
+
+                <article class="message sender">
+                    <p class="name">James:</p>
+                    <p>I might be a few minutes late, traffic looks heavy.</p>
+                    <p class="time">10:07 AM</p>
+                </article>
+
+                <article class="message receiver">
+                    <p class="name">Musa:</p>
+                    <p>No worries, I’ll wait for you.</p>
+                    <p class="time">10:08 AM</p>
+                </article>
+
+                <article class="message sender">
+                    <p class="name">James:</p>
+                    <p>Thanks! I’ll text when I’m close.</p>
+                    <p class="time">10:09 AM</p>
+                </article>
+
+                <article class="message receiver">
+                    <p class="name">Musa:</p>
+                    <p>Alright, safe trip.</p>
+                    <p class="time">10:10 AM</p>
+                </article>
+            </main>
+
+            <footer class="chat-footer">
+                <input name="message" placeholder="Start typing..." />
+                <button>Send Message</button>
+            </footer>
+        </div>
     </body>
 </html>
