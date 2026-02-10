@@ -15,6 +15,7 @@ const randomMessages = [
 const input = document.querySelector("input");
 const button = document.querySelector("button");
 const chatContainer = document.querySelector(".chat-container");
+const messagesArray = JSON.parse(localStorage.getItem("messagesArray")) || [];
 
 button.addEventListener("click", () => {
     sendMessage();
@@ -27,13 +28,18 @@ input.addEventListener("keyup", (event) => {
 
 function sendMessage () {
     const typedMessage = input.value.trim();
-    const messageContainer = document.createElement("div");
-    chatContainer.appendChild(messageContainer);
-    messageContainer.className = "message sender";
-    messageContainer.innerHTML = `<p class="name">You:</p>
-    <p>${typedMessage}</p>
-    <p class="time">${currentTime()}</p>
-    `;
+
+    messagesArray.push({
+       name: "You",
+       text: typedMessage,
+       isSender : true,
+       time: currentTime(),
+    })
+
+    localStorage.setItem("messagesArray", JSON.stringify(messagesArray));
+
+    renderMessage();
+
     input.value = "";
 
     setTimeout(autoReply, 2000);
@@ -41,15 +47,37 @@ function sendMessage () {
 }
 
 function autoReply () {
-    const messageContainer = document.createElement("div");
-    chatContainer.appendChild(messageContainer);
-    messageContainer.className = "message receiver";
-    messageContainer.innerHTML = `<p class="name">${randomItems(randomNames)}:</p>
-    <p>${randomItems(randomMessages)}</p>
-    <p class="time">${currentTime()}</p>
-    `;
+    const replyName = randomItems(randomNames);
+    const replyItem = randomItems(randomMessages);
+
+    messagesArray.push({
+       name: replyName,
+       text: replyItem,
+       isSender: false,
+       time: currentTime(),
+    })
+
+    localStorage.setItem("messagesArray", JSON.stringify(messagesArray));
+
+    renderMessage();
 
     chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function renderMessage () {
+    chatContainer.innerHTML = "";
+    messagesArray.forEach((message) => {
+        const messageContainer = document.createElement("div");
+        chatContainer.appendChild(messageContainer);
+        messageContainer.classList.add("message",
+            message.isSender ? "sender" : "receiver"
+        )
+        messageContainer.innerHTML = `<p class="name">${message.name}:</p>
+        <p>${message.text}</p>
+        <p class="time">${message.time}</p>
+        `;
+    })
+
 }
 
 const currentTime = () => new Date().toLocaleTimeString([], {hour : "numeric", minute : "2-digit", hour12 : true})
